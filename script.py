@@ -22,16 +22,15 @@ for li_tag in qalst:
 
     # access detail page
     detail_dom = getDOM(a_attrib['href'])
+
+    # get question
     div_question = detail_dom.xpath('//div[@class="ptsQes"]')
-    p_question = div_question[0][0].text_content()
-    print(p_question)
-    # print(detail_dom.xpath('//p[@class="queTxt"]'))
-    # print(detail_dom.xpath('//p[@class="ptsQes"]/text()'))
-    # "ptsQes"
-    # "queTxt"
+    p_question_1 = div_question[0][0].text_content()
+    p_question_2 = div_question[0][1].text_content()
+    p_question = p_question_1.strip() + p_question_2.strip()
+    # print(p_question)
 
-
-#
-# root = lxml.html.fromstring(target_html)
-# print(root)
-# root.cssselect('#news_body > p').text_content()
+    # get a best answer
+    best_answer = div_question[0].text_content()
+    best_answer = div_question[1][0].text_content()
+    best_answer = best_answer.strip()
