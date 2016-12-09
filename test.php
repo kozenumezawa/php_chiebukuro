@@ -2,7 +2,7 @@
 //require
 require_once('phpQuery-onefile.php');
 
-//get a page
+//use API
 $html = file_get_contents('http://chiebukuro.yahooapis.jp/Chiebukuro/V1/questionSearch?appid=<アプリケーションID>&query=apple&condition=solved');
 
 //DOM取得
