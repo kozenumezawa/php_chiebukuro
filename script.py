@@ -9,6 +9,11 @@ def getDOM(target_url):
     dom = lxml.html.fromstring(target_html)
     return dom
 
+def deleteSpace(lines):
+    text = ""
+    for line in lines:
+        text += line.rstrip('\r\n')
+    return text
 f_question = codecs.open('love_question.txt', 'w', 'utf-8')
 f_answer = codecs.open('love_answer.txt', 'w', 'utf-8')
 
@@ -16,7 +21,7 @@ f = open('url.txt')
 url = f.read()
 f.close()
 
-for i in range(10):
+for i in range(50):
     print(i)
     open_url = url.strip() + str(i+1)
     top_dom = getDOM(open_url)
@@ -40,13 +45,13 @@ for i in range(10):
             p_question_2 = div_question[0][1].text_content()
             question += p_question_2.strip()
 
-        f_question.write(question.strip())  # delete \n
+        # f_question.write(question.strip())  # delete \n
+        f_question.write(deleteSpace(question))
         f_question.write('\n')
 
         # get a best answer
         best_answer = div_question[1][0].text_content()
-        best_answer = best_answer.strip()
-        f_answer.write(best_answer.strip())  # delete \n
+        f_answer.write(deleteSpace(best_answer))  # delete \n
         f_answer.write('\n')
 
 f_question.close()
