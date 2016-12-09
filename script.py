@@ -17,8 +17,8 @@ url = f.read()
 f.close()
 
 for i in range(10):
-    open_url = url + str(i)
-
+    print(i)
+    open_url = url.strip() + str(i+1)
     top_dom = getDOM(open_url)
     qalst = top_dom.get_element_by_id('qalst')
 
@@ -33,14 +33,21 @@ for i in range(10):
         # get question
         div_question = detail_dom.xpath('//div[@class="ptsQes"]')
         p_question_1 = div_question[0][0].text_content()
-        p_question_2 = div_question[0][1].text_content()
-        question = p_question_1.strip() + p_question_2.strip()
-        f_question.write(question)
+        question = p_question_1.strip()
+
+        question_attr = div_question[0][0].attrib
+        if not question_attr.has_key('class'):
+            p_question_2 = div_question[0][1].text_content()
+            question += p_question_2.strip()
+
+        f_question.write(question.strip())  # delete \n
+        f_question.write('\n')
 
         # get a best answer
-        best_answer = div_question[0].text_content()
         best_answer = div_question[1][0].text_content()
         best_answer = best_answer.strip()
-        f_answer.write(best_answer)
+        f_answer.write(best_answer.strip())  # delete \n
+        f_question.write('\n')
+
 f_question.close()
 f_answer.close()
