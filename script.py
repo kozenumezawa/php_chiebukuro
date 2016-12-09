@@ -27,7 +27,7 @@ for i in range(50):
     top_dom = getDOM(open_url)
     qalst = top_dom.get_element_by_id('qalst')
 
-    # search li tag
+    # scraping from each question page
     for li_tag in qalst:
         a_tag = li_tag[0][0][0]
         a_attrib = a_tag.attrib
