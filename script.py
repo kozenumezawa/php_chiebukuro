@@ -47,7 +47,7 @@ for i in range(10):
         best_answer = div_question[1][0].text_content()
         best_answer = best_answer.strip()
         f_answer.write(best_answer.strip())  # delete \n
-        f_question.write('\n')
+        f_answer.write('\n')
 
 f_question.close()
 f_answer.close()
